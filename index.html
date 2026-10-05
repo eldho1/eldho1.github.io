@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Eldho K Thomas</title>
+<meta name="description" content="Eldho K. Thomas, Assistant Professor of Mathematics at Newman College, Thodupuzha. Research in algebraic coding theory, batch codes and information theory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&family=STIX+Two+Text:ital@1&display=swap">
+<style>
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+
+/* Layout: university-classic faculty page — a navy title banner (faint algebra and coding-theory notation at its right), a navy menu bar, and one white content page shown at a time; Home pairs a profile card with the biography. */
+:root {
+  --paper: #ffffff;
+  --surface: #f5f7fa;
+  --ink: #1b2533;
+  --muted: #5b6676;
+  --rule: #dde3ea;
+  --accent: #1f4f99;
+  --accent-wash: #e9eef6;
+  --title: #13305f;
+  --navy: #13305f;
+  --navy-deep: #0d2349;
+  --head-ink: #ffffff;
+  --head-muted: #c3cfe2;
+  --head-math: rgba(255, 255, 255, 0.09);
+
+  --f-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --f-body: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --f-mono: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+
+  --t-xs: 0.78rem;
+  --t-sm: 0.9rem;
+  --t-base: 1rem;
+  --t-md: 1.125rem;
+  --t-lg: 1.85rem;
+  --t-xl: 2.4rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f141b;
+    --surface: #171e29;
+    --ink: #e4e9f0;
+    --muted: #9aa6b7;
+    --rule: #273244;
+    --accent: #93b8f0;
+    --accent-wash: #1b2738;
+    --title: #b9cff2;
+    --navy: #102a52;
+    --navy-deep: #0a1d3c;
+    --head-muted: #a9b9d3;
+    --head-math: rgba(255, 255, 255, 0.07);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f141b;
+  --surface: #171e29;
+  --ink: #e4e9f0;
+  --muted: #9aa6b7;
+  --rule: #273244;
+  --accent: #93b8f0;
+  --accent-wash: #1b2738;
+  --title: #b9cff2;
+  --navy: #102a52;
+  --navy-deep: #0a1d3c;
+  --head-muted: #a9b9d3;
+  --head-math: rgba(255, 255, 255, 0.07);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; color: var(--ink); }
+
+.inner { max-width: 64rem; margin: 0 auto; padding-inline: 1rem; }
+
+/* ---------- banner ---------- */
+.banner { position: relative; overflow: hidden; background: var(--navy); color: var(--head-ink); }
+.banner .inner { position: relative; z-index: 1; padding-block: 2.5rem 2.1rem; display: grid; gap: 0.3rem; }
+.banner h1 { margin-bottom: 0.2rem; }
+.banner .eyebrow { font-size: var(--t-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--head-muted); }
+.banner h1 { font-size: var(--t-xl); line-height: 1.15; font-weight: 600; color: var(--head-ink); white-space: nowrap; }
+.banner .role { font-size: var(--t-base); color: var(--head-ink); }
+.banner .place { font-size: var(--t-sm); color: var(--head-muted); }
+.notation {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  font-family: var(--f-math); font-style: italic; line-height: 1;
+  color: var(--head-math);
+}
+.notation span { position: absolute; white-space: nowrap; }
+.notation sub, .notation sup { font-size: 0.62em; }
+
+/* ---------- menu ---------- */
+.menu {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--navy-deep);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+}
+.menu .inner { overflow-x: auto; scrollbar-width: none; }
+.menu .inner::-webkit-scrollbar { display: none; }
+.menu ul { display: flex; gap: 0.25rem; white-space: nowrap; }
+.menu a {
+  display: block; padding: 0.85rem 0.8rem 0.75rem;
+  color: var(--head-muted); text-decoration: none;
+  font-size: var(--t-sm); font-weight: 500; letter-spacing: 0.02em;
+  border-bottom: 3px solid transparent;
+}
+.menu li:first-child a { padding-left: 0; }
+.menu a:hover { color: var(--head-ink); }
+.menu a[aria-current="page"] { color: var(--head-ink); border-bottom-color: var(--head-ink); }
+.menu :focus-visible { outline-color: var(--head-ink); }
+
+/* ---------- pages ---------- */
+main.inner { padding-block: 2.5rem 4rem; min-height: 50vh; }
+.page { display: grid; gap: 1.5rem; min-width: 0; }
+.page > h2 {
+  font-size: var(--t-lg); line-height: 1.2; color: var(--title);
+  padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule);
+}
+.page h3 { font-size: var(--t-md); color: var(--title); }
+.sub { font-family: var(--f-mono); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
+.page h3.sub { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); }
+.prose { display: grid; gap: 1rem; max-width: 44rem; }
+.prose p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.block { display: grid; gap: 0.85rem; min-width: 0; }
+
+/* home */
+.home { display: grid; gap: 2rem; }
+.profile-card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 1.25rem 1.3rem; display: grid; gap: 1.1rem; align-content: start;
+}
+.profile-card h3 { font-size: var(--t-md); }
+.profile-card .label { font-family: var(--f-mono); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.profile-links { display: grid; gap: 0.35rem; }
+.profile-links a { font-size: var(--t-sm); text-decoration: none; }
+.profile-links a:hover { text-decoration: underline; }
+.profile-card address { font-style: normal; font-size: var(--t-sm); line-height: 1.55; color: var(--muted); }
+.home-main { display: grid; gap: 1.75rem; min-width: 0; }
+
+/* shared bits */
+.email { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: var(--t-sm); }
+.email code { font-family: var(--f-mono); font-size: var(--t-xs); user-select: all; color: var(--ink); }
+.copy {
+  font: 500 var(--t-xs)/1 var(--f-body);
+  color: var(--accent); background: var(--accent-wash);
+  border: 0; border-radius: 4px; padding: 0.35rem 0.55rem; cursor: pointer;
+}
+.interests { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.interests li { font-size: var(--t-sm); padding: 0.35rem 0.75rem; border-radius: 4px; background: var(--accent-wash); color: var(--ink); }
+.more { font-size: var(--t-sm); color: var(--muted); }
+.card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 1.25rem 1.35rem; display: grid; gap: 0.9rem;
+}
+address { font-style: normal; line-height: 1.6; }
+address b { font-weight: 500; }
+
+/* Erdős number */
+.erdos {
+  display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+  padding: 1rem 1.25rem; max-width: 44rem;
+}
+.erdos-num { font-family: var(--f-display); font-size: 2.6rem; line-height: 1; font-weight: 600; color: var(--title); }
+.erdos-body { display: grid; gap: 0.1rem; min-width: 0; flex: 1 1 16rem; }
+.erdos-label { font-weight: 500; }
+.erdos-path { font-size: var(--t-sm); color: var(--muted); }
+.erdos-path .arrow { color: var(--accent); padding-inline: 0.2rem; }
+
+/* publications */
+.pubs { display: grid; gap: 1.3rem; }
+.pub { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.75rem; }
+.pub-key { font-family: var(--f-mono); font-size: var(--t-xs); font-weight: 500; color: var(--accent); padding-top: 0.2rem; font-variant-numeric: tabular-nums; }
+.pub-body { display: grid; gap: 0.12rem; min-width: 0; }
+.pub-title { font-size: var(--t-md); line-height: 1.4; font-weight: 500; }
+.pub-authors { font-size: var(--t-sm); color: var(--muted); }
+.pub-authors strong { color: var(--ink); font-weight: 700; }
+.pub-venue { font-size: var(--t-sm); }
+.pub-links { display: flex; gap: 0.75rem; margin-top: 0.2rem; }
+.pub-links a { font-family: var(--f-mono); font-size: var(--t-xs); }
+
+/* supervision */
+.student { display: grid; gap: 0.35rem; }
+.student-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.75rem; }
+.student-name { font-size: var(--t-md); font-weight: 500; }
+.pill { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--accent); background: var(--accent-wash); border-radius: 999px; padding: 0.1rem 0.55rem; }
+.student p { font-size: var(--t-sm); color: var(--muted); }
+.student p b { color: var(--ink); font-weight: 500; }
+
+/* timelines */
+.cols { display: grid; gap: 2.5rem; }
+.timeline { display: grid; gap: 1.05rem; }
+.timeline li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.75rem; }
+.when { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--muted); padding-top: 0.18rem; font-variant-numeric: tabular-nums; }
+.what { display: grid; gap: 0.1rem; min-width: 0; }
+.what b { font-weight: 500; }
+.what span { font-size: var(--t-sm); color: var(--muted); }
+.now { color: var(--accent); }
+
+/* awards */
+.awards { display: grid; gap: 1rem; }
+.awards li { display: grid; gap: 0.1rem; }
+.awards b { font-weight: 500; }
+.awards span { font-size: var(--t-sm); color: var(--muted); }
+
+/* teaching */
+.teach { display: grid; gap: 2rem; }
+.courses { display: grid; gap: 0.5rem; }
+.course-group { margin-top: 0.35rem; }
+.prog { margin: 0.4rem 0 0; font-family: var(--f-body); font-size: var(--t-sm); font-weight: 500; color: var(--muted); }
+.courses li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.75rem; align-items: baseline; }
+.code { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--accent); overflow-wrap: anywhere; }
+.courses .ttl { font-size: var(--t-sm); }
+.numbered { display: grid; gap: 0.5rem; }
+.numbered li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.4rem; align-items: baseline; }
+.numbered .num { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--accent); font-variant-numeric: tabular-nums; }
+.numbered .ttl { font-size: var(--t-sm); }
+
+/* ---------- footer ---------- */
+.site-foot { background: var(--navy); color: var(--head-muted); font-size: var(--t-xs); }
+.site-foot .inner { padding-block: 1.25rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.5rem; }
+.foot-links { flex-basis: 100%; font-size: var(--t-sm); padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.foot-links a { color: var(--head-ink); text-decoration: none; }
+.foot-links a:hover { text-decoration: underline; }
+.foot-links .sep { color: var(--head-muted); padding-inline: 0.25rem; }
+.site-foot :focus-visible { outline-color: var(--head-ink); }
+.site-foot b { color: var(--head-ink); font-weight: 500; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  :root { --t-xl: 1.75rem; --t-lg: 1.5rem; --t-md: 1.0625rem; }
+  .notation .wide { display: none; }
+  .courses li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .when { padding-top: 0; }
+}
+@media (min-width: 860px) {
+  .inner { padding-inline: 2rem; }
+  .cols { grid-template-columns: 1fr 1fr; }
+  .timeline li { grid-template-columns: 5.75rem minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="banner">
+    <div class="notation" aria-hidden="true">
+      <span style="top:10%; right:4%; font-size:1.5rem">G / ker φ ≅ im φ</span>
+      <span style="top:48%; right:3%; font-size:1.35rem">𝔽<sub>q</sub>[x] / ⟨x<sup>n</sup> − 1⟩</span>
+      <span class="wide" style="top:78%; right:18%; font-size:1.25rem">d ≤ n − k + 1</span>
+      <span class="wide" style="top:16%; right:30%; font-size:1.3rem">[n, k, d]<sub>q</sub></span>
+      <span class="wide" style="top:58%; right:36%; font-size:1.2rem">G H<sup>T</sup> = 0</span>
+      <span class="wide" style="top:30%; right:20%; font-size:1.6rem">ℤ<sub>4</sub><sup>n</sup></span>
+      <span class="wide" style="top:80%; right:3%; font-size:1.1rem">C = ⟨g(x)⟩</span>
+    </div>
+  <div class="inner">
+    <h1>Dr. Eldho K Thomas</h1>
+    <p class="role">Assistant Professor of Mathematics</p>
+    <p class="place">Department of Mathematics</p>
+    <p class="place">Newman College, Thodupuzha, Kerala, India · Affiliated to Mahatma Gandhi University, Kottayam</p>
+  </div>
+</header>
+
+<nav class="menu" aria-label="Pages">
+  <div class="inner">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#supervision">Supervision</a></li>
+        <li><a href="#talks">Talks</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="inner" lang="en">
+    <section id="home" class="page" aria-labelledby="home-h">
+      <h2 id="home-h">About</h2>
+      <div class="home">
+        <div class="home-main">
+          <div class="prose">
+        <p>I am an Assistant Professor in the Department of Mathematics at Newman College, Thodupuzha, Kerala, India, affiliated to Mahatma Gandhi University, Kottayam, where I am also a research guide for doctoral students. I work in coding and information theory, with a focus on algebraic constructions of codes for distributed storage and data retrieval.</p>
+        <p>Before joining Newman College, I was a postdoctoral research fellow in <a href="https://kodu.ut.ee/~vitaly/" target="_blank" rel="noopener">Prof. Vitaly Skachek</a>'s group at the Institute of Computer Science, University of Tartu, Estonia, supported by a Mobilitas Pluss grant from the Estonian Research Council. Earlier I was a research fellow in <a href="https://vyftan.github.io/" target="_blank" rel="noopener">Prof. Vincent Y. F. Tan</a>'s group in the Department of Electrical and Computer Engineering, National University of Singapore. I received my PhD in Mathematical Sciences from <a href="https://www.ntu.edu.sg" target="_blank" rel="noopener">Nanyang Technological University</a>, Singapore, under the supervision of <a href="https://research.birmingham.ac.uk/en/persons/frederique-oggier/" target="_blank" rel="noopener">Prof. Frédérique Oggier</a>.</p>
+      </div>
+          <div class="block">
+            <h3>Research Interests</h3>
+            <ul class="interests">
+        <li>Classical coding theory via algebra and graph theory</li>
+        <li>Erasure coding for distributed storage</li>
+        <li>Batch and PIR codes</li>
+        <li>Group theory in information theory</li>
+        <li>Coding for insertion and deletion channels</li>
+        <li>Algebraic and combinatorial problems in coding</li>
+      </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="page" hidden aria-labelledby="research-h">
+      <h2 id="research-h">Research</h2>
+      <div class="prose">
+        <p>My recent work studies batch codes and PIR codes, which let a distributed storage system answer many read requests in parallel, and how finite groups can be used to construct them. My doctoral work used group theory to study the region of entropic vectors and to build quasi-uniform codes from finite groups, along with their parameters and applications to storage.</p>
+      </div>
+      <div class="block">
+        <h3>Doctoral Research</h3>
+        <div class="prose">
+          <p>My PhD thesis, <a href="https://hdl.handle.net/10356/62207" target="_blank" rel="noopener"><em>Quasi-Uniform Codes and Information Inequalities Using Group Theory</em></a>, written under the supervision of <a href="https://research.birmingham.ac.uk/en/persons/frederique-oggier/" target="_blank" rel="noopener">Prof. Frédérique Oggier</a> at Nanyang Technological University, studies the region of entropic vectors through the connection between group theory and information theory. It constructs quasi-uniform codes from finite groups, determines their parameters and examines their applications to storage.</p>
+        </div>
+      </div>
+      <div class="block">
+        <h3>Erdős Number</h3>
+        <div class="erdos">
+        <span class="erdos-num">3</span>
+        <div class="erdos-body">
+          <p class="erdos-path">Eldho K. Thomas <span class="arrow">→</span> Ago-Erik Riet <span class="arrow">→</span> Zoltán Füredi <span class="arrow">→</span> Paul Erdős</p>
+        </div>
+      </div>
+      </div>
+      <p class="more">See the <a href="#publications">publications</a> page for the full list of papers.</p>
+    </section>
+
+    <section id="publications" class="page" hidden aria-labelledby="pubs-h">
+      <h2 id="pubs-h">Publications</h2>
+      <div class="block">
+        <h3 class="sub">Preprint</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <span class="pub-key">P1</span>
+            <div class="pub-body">
+              <p class="pub-title">A Group Theoretic Construction of Batch Codes</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong></p>
+              <p class="pub-venue"><em>arXiv preprint</em> 2504.18844, 2025.</p>
+              <p class="pub-links"><a href="https://arxiv.org/abs/2504.18844" target="_blank" rel="noopener">arXiv</a></p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3 class="sub">Journal Articles</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <span class="pub-key">J4</span>
+            <div class="pub-body">
+              <p class="pub-title">Batch Codes for Asynchronous Recovery of Data</p>
+              <p class="pub-authors">A.-E. Riet, V. Skachek, <strong>E. K. Thomas</strong></p>
+              <p class="pub-venue"><em>IEEE Transactions on Information Theory</em>, vol. 68, no. 3, pp. 1545–1559, March 2022.</p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">J3</span>
+            <div class="pub-body">
+              <p class="pub-title">Polar Coding for the Binary Erasure Channel with Deletions</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, V. Y. F. Tan, A. Vardy, M. Motani</p>
+              <p class="pub-venue"><em>IEEE Communications Letters</em>, vol. 21, no. 4, pp. 710–713, 2017.</p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">J2</span>
+            <div class="pub-body">
+              <p class="pub-title">On Group Violations of Inequalities in Five Subgroups</p>
+              <p class="pub-authors">N. Markin, <strong>E. K. Thomas</strong>, F. Oggier</p>
+              <p class="pub-venue"><em>Advances in Mathematics of Communications</em>, vol. 10, no. 4, 2016.</p>
+              <p class="pub-links"><a href="https://arxiv.org/abs/1504.01359" target="_blank" rel="noopener">arXiv</a></p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">J1</span>
+            <div class="pub-body">
+              <p class="pub-title">On Abelian Group Representability of Finite Groups</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, N. Markin, F. Oggier</p>
+              <p class="pub-venue"><em>Advances in Mathematics of Communications</em>, vol. 8, no. 2, 2014.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3 class="sub">Book Chapter</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <span class="pub-key">B1</span>
+            <div class="pub-body">
+              <p class="pub-title">Constructions and Bounds for Batch Codes with Small Parameters</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, V. Skachek</p>
+              <p class="pub-venue">In Á. I. Barbero, V. Skachek, Ø. Ytrehus (eds.), <em>Coding Theory and Applications: 5th International Castle Meeting, ICMCTA 2017, Vihula, Estonia</em>, Lecture Notes in Computer Science, vol. 10495, Springer, Cham, pp. 283–295, 2017.</p>
+              <p class="pub-links"><a href="https://doi.org/10.1007/978-3-319-66278-7" target="_blank" rel="noopener">Book</a></p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3 class="sub">Conference Proceedings</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <span class="pub-key">C5</span>
+            <div class="pub-body">
+              <p class="pub-title">Asynchronous Batch and PIR Codes from Hypergraphs</p>
+              <p class="pub-authors">A.-E. Riet, V. Skachek, <strong>E. K. Thomas</strong></p>
+              <p class="pub-venue"><em>IEEE Information Theory Workshop (ITW)</em>, Guangzhou, China, pp. 1–5, 2018.</p>
+              <p class="pub-links"><a href="https://arxiv.org/abs/1806.00592" target="_blank" rel="noopener">arXiv</a></p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">C4</span>
+            <div class="pub-body">
+              <p class="pub-title">Applications of Quasi-Uniform Codes to Storage</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, F. Oggier</p>
+              <p class="pub-venue"><em>International Conference on Signal Processing and Communications (SPCOM)</em>, Bangalore, India, 2014.</p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">C3</span>
+            <div class="pub-body">
+              <p class="pub-title">Groups and Information Inequalities in 5 Variables</p>
+              <p class="pub-authors">N. Markin, <strong>E. K. Thomas</strong>, F. Oggier</p>
+              <p class="pub-venue"><em>51st Annual Allerton Conference on Communication, Control, and Computing</em>, Illinois, USA, 2013.</p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">C2</span>
+            <div class="pub-body">
+              <p class="pub-title">Explicit Constructions of Quasi-Uniform Codes from Groups</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, F. Oggier</p>
+              <p class="pub-venue"><em>IEEE International Symposium on Information Theory (ISIT)</em>, Istanbul, Turkey, 2013.</p>
+            </div>
+          </li>
+          <li class="pub">
+            <span class="pub-key">C1</span>
+            <div class="pub-body">
+              <p class="pub-title">A Note on Quasi-Uniform Distributions and Abelian Group Representability</p>
+              <p class="pub-authors"><strong>E. K. Thomas</strong>, F. Oggier</p>
+              <p class="pub-venue"><em>International Conference on Signal Processing and Communications (SPCOM)</em>, Bangalore, India, 2012.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h3 class="sub">Doctoral Thesis</h3>
+        <ol class="pubs">
+          <li class="pub">
+            <span class="pub-key">T1</span>
+            <div class="pub-body">
+              <p class="pub-title">Quasi-Uniform Codes and Information Inequalities Using Group Theory</p>
+              <p class="pub-authors">Supervisor: <a href="https://research.birmingham.ac.uk/en/persons/frederique-oggier/" target="_blank" rel="noopener">Prof. Frédérique Oggier</a></p>
+              <p class="pub-venue">PhD thesis, <em>Nanyang Technological University</em>, Singapore, 2015.</p>
+              <p class="pub-links"><a href="https://hdl.handle.net/10356/62207" target="_blank" rel="noopener">Thesis</a></p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <p class="more">Citation counts are on <a href="https://scholar.google.co.in/citations?user=WhX6_oMAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+    </section>
+
+    <section id="supervision" class="page" hidden aria-labelledby="sup-h">
+      <h2 id="sup-h">Research Supervision</h2>
+      <p class="more">Research guide, Mahatma Gandhi University, Kottayam</p>
+      <div class="card">
+        <div class="student">
+          <div class="student-head">
+            <span class="student-name">Mr. Mohammed Sinan C C</span>
+            <span class="pill">PhD scholar · ongoing</span>
+          </div>
+          <p>Assistant Professor, Department of Mathematics, Newman College, Thodupuzha</p>
+          <p><b>Area:</b> Algebraic constructions of locally repairable codes and batch codes</p>
+          <p><a href="https://newmancollege.ac.in/wp-faculty/mohammed-sinan-c-c/" target="_blank" rel="noopener">College profile</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="talks" class="page" hidden aria-labelledby="talks-h">
+      <h2 id="talks-h">Talks</h2>
+      <ol class="timeline">
+        <li><span class="when">Aug 2023</span><div class="what"><b>Mathematics in Modern Life</b><span>Association inaugural lecture, St. Joseph's College, Moolamattom, Kerala</span></div></li>
+        <li><span class="when">Dec 2022</span><div class="what"><b>An Introduction to Coding Theory</b><span>Ramanujan Day lecture, Nirmala College, Muvattupuzha, Kerala</span></div></li>
+        <li><span class="when">May 2021</span><div class="what"><b>Batch Codes for Cloud Storage: An Overview</b><span>International Seminar on Recent Trends in Applied Mathematics, KSMDB College, Sasthamcotta, Kerala</span></div></li>
+        <li><span class="when">Feb 2020</span><div class="what"><b>Asynchronous Batch Codes: An Introduction</b><span>International Seminar on Recent Trends in Mathematics and Some Applications, Ettumanoorappan College, Kerala</span></div></li>
+        <li><span class="when">Jul 2017</span><div class="what"><b>Constructions and Bounds for Batch Codes with Small Parameters</b><span>Institute of Computer Science, University of Tartu, Estonia</span></div></li>
+        <li><span class="when">Feb 2017</span><div class="what"><b>Batch Codes and PIR Codes: An Introduction</b><span>International Seminar on Algebra and Coding Theory (INSACT), St. Berchmans College, Changanassery, Kerala</span></div></li>
+        <li><span class="when">Oct 2016</span><div class="what"><b>Group Theoretic Construction of Quasi-Uniform Codes</b><span>Joint Estonian-Latvian Theory Days, Lilaste, Latvia</span></div></li>
+        <li><span class="when">May 2015</span><div class="what"><b>Quasi-Uniform Codes and Ingleton Inequalities Using Group Theory</b><span>Department of ECE, National University of Singapore</span></div></li>
+        <li><span class="when">Jul 2014</span><div class="what"><b>Applications of Quasi-Uniform Codes to Storage</b><span>SPCOM, Indian Institute of Science, Bangalore</span></div></li>
+        <li><span class="when">Jul 2013</span><div class="what"><b>Explicit Constructions of Quasi-Uniform Codes from Groups</b><span>IEEE ISIT, Istanbul, Turkey</span></div></li>
+        <li><span class="when">Jul 2012</span><div class="what"><b>A Note on Quasi-Uniform Distributions and Abelian Group Representability</b><span>SPCOM, Indian Institute of Science, Bangalore</span></div></li>
+      </ol>
+    </section>
+
+    <section id="experience" class="page" hidden aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience &amp; Education</h2>
+      <div class="cols">
+        <div class="block">
+          <h3 class="sub">Positions</h3>
+          <ol class="timeline">
+            <li>
+              <span class="when now">2020–Present</span>
+              <div class="what">
+                <b>Assistant Professor</b>
+                <span>Department of Mathematics, Newman College, Thodupuzha, Kerala, India (Mahatma Gandhi University)</span>
+                <span>Research guide, MG University</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2016–2020</span>
+              <div class="what">
+                <b>Postdoctoral Research Fellow</b>
+                <span><a href="https://kodu.ut.ee/~vitaly/" target="_blank" rel="noopener">Prof. Vitaly Skachek</a>'s group, Institute of Computer Science, University of Tartu, Estonia</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2015–2016</span>
+              <div class="what">
+                <b>Research Fellow</b>
+                <span><a href="https://vyftan.github.io/" target="_blank" rel="noopener">Prof. Vincent Y. F. Tan</a>'s group, Department of ECE, National University of Singapore</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="block">
+          <h3 class="sub">Education</h3>
+          <ol class="timeline">
+            <li>
+              <span class="when">2010–2015</span>
+              <div class="what">
+                <b>PhD in Mathematical Sciences</b>
+                <span>School of Physical and Mathematical Sciences, Nanyang Technological University, Singapore</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2008–2009</span>
+              <div class="what">
+                <b>MSc in Mathematical Sciences</b>
+                <span>University of Liverpool, United Kingdom</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2006–2008</span>
+              <div class="what">
+                <b>MSc in Mathematics</b>
+                <span>St. Thomas College, Pala (Mahatma Gandhi University)</span>
+              </div>
+            </li>
+            <li>
+              <span class="when">2003–2006</span>
+              <div class="what">
+                <b>BSc in Mathematics</b>
+                <span>Mahatma Gandhi University, Kerala</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="block">
+          <h3 class="sub">Grants &amp; Awards</h3>
+          <ul class="awards">
+            <li><b>Mobilitas Pluss Postdoctoral Researcher Grant</b><span>Estonian Research Council · Study of Novel Codes for Problems in Distributed Systems · €63,420</span></li>
+            <li><b>NTU Research Scholarship</b><span>Nanyang Technological University</span></li>
+            <li><b>International Advancement Award</b><span>University of Liverpool</span></li>
+          </ul>
+        </div>
+    </section>
+
+    <section id="teaching" class="page" hidden aria-labelledby="teach-h">
+      <h2 id="teach-h">Teaching</h2>
+      <div class="teach">
+        <div class="block">
+          <h3>Current Courses</h3>
+          <h4 class="prog">BSc Mathematics (Hons)</h4>
+          <ul class="courses">
+            <li><span class="code">MG1DSCMAT100</span><span class="ttl">Ground Roots of Mathematics</span></li>
+            <li><span class="code">MG3DSCMAT200</span><span class="ttl">Perspectives of Mathematics</span></li>
+            <li><span class="code">MG5DSCMAT302</span><span class="ttl">Fundamentals of Groups and Rings</span></li>
+          </ul>
+          <h4 class="prog">MSc Mathematics</h4>
+          <ul class="courses">
+            <li><span class="code">ME010105</span><span class="ttl">Graph Theory</span></li>
+            <li><span class="code">ME010302</span><span class="ttl">Partial Differential Equations</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h3>Past Courses Taught</h3>
+          <h4 class="prog">Newman College, Thodupuzha</h4>
+          <p class="sub course-group">MSc Mathematics</p>
+          <ul class="courses">
+            <li><span class="code">ME010105</span><span class="ttl">Graph Theory</span></li>
+            <li><span class="code">ME010205</span><span class="ttl">Measure and Integration</span></li>
+            <li><span class="code">ME010302</span><span class="ttl">Partial Differential Equations</span></li>
+            <li><span class="code">ME800403</span><span class="ttl">Combinatorics</span></li>
+          </ul>
+          <p class="sub course-group">BSc Mathematics</p>
+          <ul class="courses">
+            <li><span class="code">MM1CRT01</span><span class="ttl">Foundation of Mathematics</span></li>
+            <li><span class="code">MM2CRT02</span><span class="ttl">Analytic Geometry, Trigonometry and Differential Calculus</span></li>
+            <li><span class="code">MM3CRT03</span><span class="ttl">Calculus</span></li>
+            <li><span class="code">MM4CRT04</span><span class="ttl">Vector Calculus, Theory of Numbers and Laplace Transform</span></li>
+            <li><span class="code">MM6CRT04</span><span class="ttl">Abstract Algebra</span></li>
+            <li><span class="code">MM6CBT01</span><span class="ttl">Operations Research</span></li>
+            <li><span class="code">MM6CRT02</span><span class="ttl">Graph Theory and Metric Spaces</span></li>
+          </ul>
+          <p class="sub course-group">Complementary and Open Courses</p>
+          <ul class="courses">
+            <li><span class="code">MM1CMT01</span><span class="ttl">Partial Differentiation, Matrices, Trigonometry and Numerical Methods</span></li>
+            <li><span class="code">MM1CMT02</span><span class="ttl">Integral Calculus and Differential Equations</span></li>
+            <li><span class="code">MM3CMT03</span><span class="ttl">Vector Calculus, Analytic Geometry and Abstract Algebra</span></li>
+            <li><span class="code">MM4CMT04</span><span class="ttl">Fourier Series, Laplace Transform and Complex Analysis</span></li>
+            <li><span class="code">MM5GET02</span><span class="ttl">Applicable Mathematics</span></li>
+          </ul>
+        </div>
+
+        <div class="cols">
+          <div class="block">
+            <h4 class="prog">University of Tartu</h4>
+            <ol class="numbered">
+              <li><span class="num">1.</span><span class="ttl">Design and Analysis of Algorithms</span></li>
+              <li><span class="num">2.</span><span class="ttl">Introduction to Coding Theory</span></li>
+              <li><span class="num">3.</span><span class="ttl">Theoretical Computer Science</span></li>
+            </ol>
+          </div>
+          <div class="block">
+            <h4 class="prog">Nanyang Technological University</h4>
+            <ol class="numbered">
+              <li><span class="num">1.</span><span class="ttl">Mathematics 1: Calculus for Engineering Students</span></li>
+              <li><span class="num">2.</span><span class="ttl">Calculus 2: Advanced Calculus for Science Students</span></li>
+              <li><span class="num">3.</span><span class="ttl">Calculus 1: MATLAB Sessions</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="page" hidden aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="card">
+        <address>
+          <b>Dr. Eldho K Thomas</b><br>
+          Assistant Professor, Department of Mathematics<br>
+          Newman College, Thodupuzha, Idukki District<br>
+          Kerala, India 685585
+        </address>
+        <div class="email">
+          <code id="email-addr-2">fr.dr.eldhokthomas@<wbr>newmancollege.ac.in</code>
+          <button class="copy" id="copy-email-2" type="button" data-target="email-addr-2">Copy</button>
+        </div>
+      </div>
+    </section>
+</main>
+
+<footer class="site-foot">
+  <div class="inner">
+    <p class="foot-links" aria-label="Profiles"><a href="https://scholar.google.co.in/citations?user=WhX6_oMAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><span class="sep" aria-hidden="true"> · </span><a href="https://orcid.org/0000-0001-5052-4206" target="_blank" rel="noopener">ORCID</a><span class="sep" aria-hidden="true"> · </span><a href="https://www.scopus.com/authid/detail.uri?authorId=57199404909" target="_blank" rel="noopener">Scopus</a><span class="sep" aria-hidden="true"> · </span><a href="https://vidwan.inflibnet.ac.in/profile/283627" target="_blank" rel="noopener">Vidwan</a><span class="sep" aria-hidden="true"> · </span><a href="https://dblp.org/pid/123/4546.html" target="_blank" rel="noopener">dblp</a><span class="sep" aria-hidden="true"> · </span><a href="https://www.researchgate.net/profile/Eldho-Thomas" target="_blank" rel="noopener">ResearchGate</a></p>
+    <span><b>Dr. Eldho K Thomas</b> · Department of Mathematics, Newman College, Thodupuzha, Kerala, India 685585</span>
+    <span>Last updated October 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.target);
+      var text = el.textContent.trim();
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        done('Selected');
+      }
+      try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback); }
+      catch (e) { fallback(); }
+    });
+  });
+
+  var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.menu a'));
+  function show(id, scroll) {
+    var target = pages.filter(function (p) { return p.id === id; })[0] || pages[0];
+    pages.forEach(function (p) { p.hidden = (p !== target); });
+    links.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + target.id) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    var active = links.filter(function (a) { return a.hasAttribute('aria-current'); })[0];
+    var bar = active && active.closest('.inner');
+    if (bar && bar.scrollWidth > bar.clientWidth) bar.scrollLeft = Math.max(0, active.offsetLeft - 16);
+    if (scroll) window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1), true); });
+  show(location.hash.slice(1) || 'home', false);
+  if (location.hash) { window.scrollTo(0, 0); setTimeout(function () { window.scrollTo(0, 0); }, 0); }
+})();
+</script>
+
+</body>
+</html>
