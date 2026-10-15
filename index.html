@@ -145,7 +145,12 @@ main.inner { padding-block: 2.5rem 4rem; min-height: 50vh; }
 .block { display: grid; gap: 0.85rem; min-width: 0; }
 
 /* home */
-.home { display: grid; gap: 2rem; }
+.home { display: grid; gap: 1.75rem; }
+.portrait { margin: 0; width: min(11rem, 50%); }
+.portrait img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: 4px; border: 1px solid var(--rule); background: var(--surface);
+}
 .profile-card {
   background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
   padding: 1.25rem 1.3rem; display: grid; gap: 1.1rem; align-content: start;
@@ -258,6 +263,8 @@ address b { font-weight: 500; }
 @media (min-width: 860px) {
   .inner { padding-inline: 2rem; }
   .cols { grid-template-columns: 1fr 1fr; }
+  .home { grid-template-columns: 13rem minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .portrait { width: 100%; }
   .timeline li { grid-template-columns: 5.75rem minmax(0, 1fr); }
 }
 </style>
@@ -301,6 +308,7 @@ address b { font-weight: 500; }
     <section id="home" class="page" aria-labelledby="home-h">
       <h2 id="home-h">About</h2>
       <div class="home">
+        <figure class="portrait"><img src="photo.jpg" width="480" height="600" alt="Portrait of Dr. Eldho K Thomas"></figure>
         <div class="home-main">
           <div class="prose">
         <p>I am an Assistant Professor in the Department of Mathematics at Newman College, Thodupuzha, Kerala, India, affiliated to Mahatma Gandhi University, Kottayam, where I am also a research guide for doctoral students. I work in coding and information theory, with a focus on algebraic constructions of codes for distributed storage and data retrieval.</p>
